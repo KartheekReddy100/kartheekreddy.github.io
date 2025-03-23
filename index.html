@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of a Cybersecurity Professional">
-    <title>Kartheek Reddy - Home</title>
+    <title>Home - Kartheek Reddy</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet"> <!-- Montserrat font -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,6 +17,9 @@
             padding-top: 60px; /* Adjust to prevent content overlap with fixed nav */
         }
         nav {
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically align items */
+            justify-content: space-between; /* Distribute space between logo and menu */
             position: fixed;
             top: 0;
             width: 100%;
@@ -25,10 +29,20 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             border-radius: 0 0 10px 10px;
         }
+        nav .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: underline;
+            color: #58a6ff;
+            margin-left: 20px; /* Keep a small margin for spacing */
+        }
         nav .menu {
             display: flex;
             justify-content: flex-end;
             padding-right: 20px;
+            flex-grow: 1; /* Push menu items to the right */
+            margin-right: 20px; /* Keep a small margin for spacing */
         }
         nav .menu a {
             color: #58a6ff;
@@ -291,10 +305,16 @@
         #education li strong {
             color: #58a6ff;
         }
+        #education li p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
     <nav>
+        <span class="logo">Kartheek Reddy</span> <!-- Logo added -->
         <span class="toggle" onclick="toggleMenu()">☰</span>
         <div class="menu">
             <a href="#about">About</a>
@@ -325,7 +345,7 @@
             <strong>Current Focus:</strong> I'm exploring <strong>Quantum Key-Based Hybrid Encryption</strong> and <strong>Steganography</strong> to enhance data security. I also work on various forensic investigations, including cryptographic hashing, email forensics, and file content carving, leveraging industry-standard tools and methodologies.
         </p>
         <p>
-            <strong>My Mission:</strong> Through my website, I aim to share cybersecurity insights, research findings, and hands-on tutorials to help others understand the evolving landscape of digital security. Whether you're a fellow student, a cybersecurity professional, or just curious about online safety, you'll find valuable content here.
+            <strong>My Mission:</strong> My aim is to share cybersecurity insights, research findings, and hands-on tutorials to help others understand the evolving landscape of digital security. Whether you're a fellow student, a cybersecurity professional, or just curious about online safety, you'll find valuable content here.
         </p>
         <p>
             <strong>Let's Connect:</strong> Feel free to connect with me as I continue to explore and contribute to the world of cybersecurity!
@@ -375,12 +395,11 @@
         <ul>
             <li>
                 <strong>MSc in Advanced Cybersecurity</strong> - Cardiff Metropolitan University (2024)
+                <p>Gaining hands-on experience in penetration testing and forensic investigations to analyze and mitigate security threats. Developing expertise in encryption techniques to secure digital communication and protect sensitive data. Designing and implementing security policies and frameworks aligned with GDPR, ISO 27701, and other compliance standards to ensure regulatory adherence and data privacy.</p>
             </li>
             <li>
                 <strong>BTech in Computer Science and Engineering</strong> - Lovely Professional University (2020)
-            </li>
-            <li>
-                <strong>Certifications:</strong> CEH, CISSP, CompTIA Security+
+                <p>Developed a strong foundation in understanding and mitigating cyber threats while securing data transmission and safeguarding information systems. Gained expertise in detecting, analyzing, and responding to cyber threats using various security tools and methodologies. Explored decentralized systems and contributed to the development of secure, automated contract solutions to enhance cybersecurity in blockchain-based environments.</p>
             </li>
         </ul>
     </section>
