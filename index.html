@@ -1,1 +1,367 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of a Cybersecurity Professional">
+    <title>Kartheek Reddy - Home</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            padding-top: 60px; /* Adjust to prevent content overlap with fixed nav */
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #161b22;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 10px 10px;
+        }
+        nav .menu {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 20px;
+        }
+        nav .menu a {
+            color: #58a6ff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border: 1px solid #58a6ff;
+            border-radius: 5px;
+            background-color: transparent;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav .menu a:hover {
+            background-color: #58a6ff;
+            color: #0d1117;
+        }
+        nav .dropdown {
+            display: none;
+            flex-direction: column;
+            align-items: flex-end;
+            padding-right: 20px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            height: 0; /* Ensure no blank space when hidden */
+            overflow: hidden; /* Prevent content from showing */
+        }
+        nav .dropdown.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+            height: auto; /* Restore height when visible */
+        }
+        nav .dropdown a {
+            margin: 5px 0;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border: 1px solid #58a6ff;
+            border-radius: 5px;
+            background-color: transparent;
+            color: #58a6ff;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav .dropdown a:hover {
+            background-color: #58a6ff;
+            color: #0d1117;
+        }
+        nav .toggle {
+            display: none;
+            color: #58a6ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding-right: 20px;
+        }
+        @media (max-width: 768px) {
+            nav .menu {
+                display: none;
+            }
+            nav .toggle {
+                display: block;
+            }
+            nav .dropdown {
+                display: flex;
+            }
+        }
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+        .hero {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .hero h2 {
+            color: #58a6ff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        footer {
+            background-color: #161b22;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        #about {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        #about h2 {
+            color: #58a6ff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        #about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        #about p strong {
+            color: #58a6ff;
+        }
+        #contact {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        #contact h2 {
+            color: #58a6ff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        #contact p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        #contact a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        #contact a:hover {
+            text-decoration: underline;
+        }
+        #contact button {
+            background-color: #58a6ff;
+            color: #0d1117;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        #contact button:hover {
+            background-color: #1f6feb;
+        }
+        #contact button a {
+            color: #0d1117;
+            text-decoration: none;
+        }
+        #projects {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        #projects h2 {   
+            color: #58a6ff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        #projects ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #projects li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        #projects li strong {
+            color: #58a6ff;
+        }
+        #experiences {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        #experiences h2 {
+            color: #58a6ff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        #experiences ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #experiences li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        #experiences li strong {
+            color: #58a6ff;
+        }
+        #certifications {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        #certifications h2 {
+            color: #58a6ff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        #certifications ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #certifications li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        #certifications li strong {
+            color: #58a6ff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <span class="toggle" onclick="toggleMenu()">☰</span>
+        <div class="menu">
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="blog.html">Blog</a> <!-- Updated Blog link -->
+             <a href="#store">Store</a> <!-- New Store link -->
+        </div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="blog.html">Blog</a> <!-- Updated Blog link -->
+            <a href="#store">Store</a> <!-- New Store link -->
+        </div>
+    </nav>
+    <section class="hero">
+        <h2>Welcome</h2>
+        <p>
+            I am a cybersecurity professional with expertise in securing systems, networks, and data. 
+            My mission is to protect organizations from cyber threats and ensure their digital safety.
+        </p>
+    </section>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            <strong>Hi, I'm Kartheek</strong>, a passionate cybersecurity enthusiast and digital forensics researcher. My journey in cybersecurity is fueled by a deep interest in encryption, forensic investigations, and securing digital assets.
+        </p>
+        <p>
+            <strong>Current Focus:</strong> I'm exploring <strong>Quantum Key-Based Hybrid Encryption</strong> and <strong>Steganography</strong> to enhance data security. I also work on various forensic investigations, including cryptographic hashing, email forensics, and file content carving, leveraging industry-standard tools and methodologies.
+        </p>
+        <p>
+            <strong>My Mission:</strong> Through my website, I aim to share cybersecurity insights, research findings, and hands-on tutorials to help others understand the evolving landscape of digital security. Whether you're a fellow student, a cybersecurity professional, or just curious about online safety, you'll find valuable content here.
+        </p>
+        <p>
+            <strong>Let's Connect:</strong> Feel free to connect with me as I continue to explore and contribute to the world of cybersecurity!
+        </p>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li>
+                <strong>Quantum Key-Based Hybrid Encryption:</strong> Developed a secure encryption model combining quantum key distribution and classical encryption techniques.
+            </li>
+            <li>
+                <strong>Steganography Research:</strong> Explored advanced steganographic methods to securely embed data within digital media.
+            </li>
+        </ul>
+    </section>
+    <section id="experiences">
+        <h2>Experiences</h2>
+        <ul>
+            <li>
+                <strong>Forensic Investigations:</strong> Conducted cryptographic hashing, email forensics, and file content carving using industry-standard tools.
+            </li>
+            <li>
+                <strong>Penetration Testing:</strong> Performed vulnerability assessments and penetration testing for various organizations to identify and mitigate security risks.
+            </li>
+        </ul>
+    </section>
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>
+                <strong>Certified Ethical Hacker (CEH):</strong> Gained expertise in ethical hacking methodologies and tools.
+            </li>
+            <li>
+                <strong>CompTIA Security+:</strong> Demonstrated knowledge of core security concepts and practices.
+            </li>
+            <li>
+                <strong>Certified Information Systems Security Professional (CISSP):</strong> Validated skills in designing and managing cybersecurity programs.
+            </li>
+            <li>
+                <strong>Certified Digital Forensics Examiner (CDFE):</strong> Specialized in forensic analysis and evidence handling.
+            </li>
+        </ul>
+    </section>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <button>
+            <a href="mailto:kartheekreddy@outlook.in">Email Me</a>
+        </button>
+        <button>
+            <a href="https://linkedin.com/in/kartheekreddy" target="_blank">LinkedIn</a>
+        </button>
+    </section>
+    <footer>
+        <p>&copy; 2025 Kartheek Reddy. All Rights Reserved.</p>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
