@@ -141,6 +141,35 @@
             line-height: 1.8;
             margin-bottom: 15px;
         }
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #58a6ff;
+            animation: typing 2s steps(30, end), blink 0.5s step-end infinite; /* Reduced typing duration */
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #58a6ff;
+            }
+        }
+
+        .hero .typing-container {
+            display: inline-block;
+        }
         footer {
             background-color: #161b22;
             padding: 10px;
@@ -401,9 +430,9 @@
         </div>
     </nav>
     <section class="hero">
-        <h2>Welcome!</h2>
-        <h2>Croeso!</h2>
-        <h2>స్వాగతం!</h2>
+        <div class="typing-container">
+            <h2 class="typing" id="typingText">Welcome!</h2>
+        </div>
     </section>
     <section id="about">
         <h2>About Me</h2>
@@ -519,6 +548,20 @@
             const dropdown = document.getElementById('dropdownMenu');
             dropdown.classList.toggle('show');
         }
+
+        const texts = ["Welcome!", "Croeso!", "欢迎!", "स्वागत है!", "స్వాగతం!"];
+        let index = 0;
+
+        function changeText() {
+            const typingText = document.getElementById("typingText");
+            typingText.textContent = texts[index];
+            typingText.style.animation = "none"; // Reset animation
+            void typingText.offsetWidth; // Trigger reflow
+            typingText.style.animation = "typing 2s steps(30, end), blink 0.5s step-end infinite"; // Match reduced duration
+            index = (index + 1) % texts.length;
+        }
+
+        setInterval(changeText, 3000); // Adjust interval to match faster animation
     </script>
 </body>
 </html>
