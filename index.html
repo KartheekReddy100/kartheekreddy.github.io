@@ -7,6 +7,7 @@
     <title>Home - Kartheek Reddy</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet"> <!-- Montserrat font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,11 +46,15 @@
             margin-right: 20px; /* Keep a small margin for spacing */
         }
         nav .menu a {
+            display: inline-flex; /* Ensure consistent alignment */
+            align-items: center;
+            justify-content: center;
+            width: 120px; /* Set uniform width */
+            height: 40px; /* Set uniform height */
             color: #58a6ff;
             text-decoration: none;
-            margin: 0 10px;
             font-size: 1.2rem;
-            padding: 5px 10px;
+            margin: 0 10px; /* Add spacing between buttons */
             border: 1px solid #58a6ff;
             border-radius: 5px;
             background-color: transparent;
@@ -77,9 +82,13 @@
             height: auto; /* Restore height when visible */
         }
         nav .dropdown a {
-            margin: 5px 0;
+            display: inline-flex; /* Ensure consistent alignment */
+            align-items: center;
+            justify-content: center;
+            width: 120px; /* Match size with nav buttons */
+            height: 40px; /* Match size with nav buttons */
+            margin: 5px 0; /* Add spacing between dropdown items */
             font-size: 1.2rem;
-            padding: 5px 10px;
             border: 1px solid #58a6ff;
             border-radius: 5px;
             background-color: transparent;
@@ -96,6 +105,7 @@
             color: #58a6ff;
             font-size: 1.5rem;
             cursor: pointer;
+            margin-left: auto; /* Push toggle button to the right end */
             padding-right: 20px;
         }
         @media (max-width: 768px) {
@@ -169,6 +179,7 @@
             margin: 20px auto;
             max-width: 800px;
             text-align: left;
+            text-align: center; /* Center align the buttons */
         }
         #contact h2 {
             color: #58a6ff;
@@ -188,22 +199,77 @@
             text-decoration: underline;
         }
         #contact button {
-            background-color: #58a6ff;
-            color: #0d1117;
+            display: inline-flex; /* Align buttons side by side */
+            align-items: center;
+            justify-content: center;
+            width: 150px; /* Set uniform width */
+            height: 40px; /* Set uniform height */
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
             font-size: 1rem;
             cursor: pointer;
-            margin-right: 10px;
+            margin: 5px; /* Add spacing between buttons */
             transition: background-color 0.3s;
         }
-        #contact button:hover {
+        #contact button a {
+            color: #fff; /* Ensure text is visible on colored buttons */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+        }
+        #contact button i {
+            font-size: 1.2rem; /* Icon size */
+        }
+        #contact .email {
+            background-color: #58a6ff;
+        }
+        #contact .email:hover {
             background-color: #1f6feb;
         }
-        #contact button a {
-            color: #0d1117;
-            text-decoration: none;
+        #contact .linkedin {
+            background-color: #0077b5;
+        }
+        #contact .linkedin:hover {
+            background-color: #005582;
+        }
+        #contact .facebook {
+            background-color: #1877f2;
+        }
+        #contact .facebook:hover {
+            background-color: #145dbf;
+        }
+        #contact .github {
+            background-color: #333;
+        }
+        #contact .github:hover {
+            background-color: #24292e;
+        }
+        #contact .twitter {
+            background-color: #1da1f2;
+        }
+        #contact .twitter:hover {
+            background-color: #0d8ddb;
+        }
+        #contact .youtube {
+            background-color: #FF0000;
+        }
+        #contact .youtube:hover {
+            background-color: #CC0000;
+        }
+        #contact .instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            color: #fff;
+        }
+        #contact .instagram:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            opacity: 0.9;
+        }
+        #contact .tryhackme {
+            background-color: #6a0dad;
+        }
+        #contact .tryhackme:hover {
+            background-color: #4b0082;
         }
         #projects {
             background-color: #161b22;
@@ -280,6 +346,11 @@
         #certifications li strong {
             color: #58a6ff;
         }
+        #certifications li p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 5px;
+        }
         #education {
             background-color: #161b22;
             padding: 30px;
@@ -330,11 +401,9 @@
         </div>
     </nav>
     <section class="hero">
-        <h2>Welcome</h2>
-        <p>
-            I am a cybersecurity professional with expertise in securing systems, networks, and data. 
-            My mission is to protect organizations from cyber threats and ensure their digital safety.
-        </p>
+        <h2>Welcome!</h2>
+        <h2>Croeso!</h2>
+        <h2>స్వాగతం!</h2>
     </section>
     <section id="about">
         <h2>About Me</h2>
@@ -377,16 +446,12 @@
         <h2>Certifications</h2>
         <ul>
             <li>
-                <strong>Certified Ethical Hacker (CEH):</strong> Gained expertise in ethical hacking methodologies and tools.
+                <strong>IBM Cloud Essentials (CC0103EN)</strong> - IBM and EdX (June 2023)
+                <p>Gained a strong understanding of cloud computing models (IaaS, PaaS, SaaS) and various deployment types. Explored core IBM Cloud services, including compute, storage, networking, and security, to enhance cloud-based solutions. Developed hands-on experience in navigating the IBM Cloud console and effectively managing cloud resources.</p>
             </li>
             <li>
-                <strong>CompTIA Security+:</strong> Demonstrated knowledge of core security concepts and practices.
-            </li>
-            <li>
-                <strong>Certified Information Systems Security Professional (CISSP):</strong> Validated skills in designing and managing cybersecurity programs.
-            </li>
-            <li>
-                <strong>Certified Digital Forensics Examiner (CDFE):</strong> Specialized in forensic analysis and evidence handling.
+                <strong>Introduction to Cybersecurity Essentials</strong> - Cisco Networking Academy and Coursera (May 2023)
+                <p>Developed a strong foundation in cybersecurity concepts, including threat identification, risk management, and security frameworks. Gained insights into best practices for protecting data, networks, and systems against cyber threats. Explored various cybersecurity tools and their practical applications in real-world security scenarios.</p>
             </li>
         </ul>
     </section>
@@ -404,12 +469,46 @@
         </ul>
     </section>
     <section id="contact">
-        <h2>Contact Me</h2>
-        <button>
-            <a href="mailto:kartheekreddy@outlook.in">Email Me</a>
+        <h2>Socials</h2>
+        <button class="email">
+            <a href="mailto:kartheekreddy@outlook.in">
+                <i class="fas fa-envelope"></i> Email Me
+            </a>
         </button>
-        <button>
-            <a href="https://linkedin.com/in/kartheekreddy" target="_blank">LinkedIn</a>
+        <button class="linkedin">
+            <a href="https://www.linkedin.com/in/kartheek-nallamilli/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </button>
+        <button class="facebook">
+            <a href="https://www.facebook.com/kartheekreddynallamilli/" target="_blank">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+        </button>
+        <button class="github">
+            <a href="https://github.com/KartheekReddy100" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </button>
+        <button class="twitter">
+            <a href="https://x.com/SatyaSaiKa2209" target="_blank">
+                <i class="fab fa-twitter"></i> X
+            </a>
+        </button>
+        <button class="youtube">
+            <a href="https://www.youtube.com/@Kartheek_reddy_nallamilli" target="_blank">
+                <i class="fab fa-youtube"></i> YouTube
+            </a>
+        </button>
+        <button class="instagram">
+            <a href="https://www.instagram.com/kartheekreddy-nallamilli/" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+        </button>
+        <button class="tryhackme">
+            <a href="https://tryhackme.com/p/azhday" target="_blank">
+                <i class="fas fa-hat-wizard"></i> TryHackMe
+            </a>
         </button>
     </section>
     <footer>
