@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet"> <!-- Montserrat font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Add favicon link -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -130,16 +129,11 @@
             border-radius: 10px;
             margin: 20px auto;
             max-width: 800px;
-            text-align: left;
+            text-align: center; /* Center align the text */
         }
         .hero h2 {
             color: #58a6ff;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        .hero p {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 3rem; /* Increase the font size */
             margin-bottom: 15px;
         }
         .typing {
@@ -186,7 +180,7 @@
             padding: 30px;
             border-radius: 10px;
             margin: 20px auto;
-            max-width: 800px;
+            max-width: 800px; /* Match the size of the certifications section */
             text-align: left;
         }
         #about h2 {
@@ -420,7 +414,7 @@
         <div class="menu">
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
-            <a href="https://kartheekreddy100.github.io/kartheekreddy.github.io/Blog.html">Blog</a> <!-- Updated Blog link -->
+            <a href="blog.html">Blog</a> <!-- Updated Blog link -->
              <a href="#store">Store</a> <!-- New Store link -->
         </div>
         <div class="dropdown" id="dropdownMenu">
@@ -541,6 +535,26 @@
             </a>
         </button>
     </section>
+    <section id="achievements" style="background-color: #161b22; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; text-align: center;">
+        <h2 style="color: #58a6ff; font-size: 2rem; margin-bottom: 15px;">Achievements and Hackathons</h2>
+        <img src="https://tryhackme-badges.s3.amazonaws.com/azhday.png" alt="Your Image Badge" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
+    </section>
+    <section id="location" style="background-color: #161b22; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; text-align: center;">
+        <h2 style="color: #58a6ff; font-size: 2rem; margin-bottom: 15px;">My Location</h2>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.260918949872!2d-3.226485684246781!3d51.49755357963444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e1c1c5b2c3b2f%3A0x7b8e9c7e3b8e9c7e!2sLlandaff%2C%20Cardiff%2C%20UK!5e0!3m2!1sen!2suk!4v1697040000000!5m2!1sen!2suk" 
+            width="100%" 
+            height="300" 
+            style="border:0; border-radius: 10px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+    <section id="music" style="background-color: #161b22; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; text-align: center;">
+        <h2 style="color: #58a6ff; font-size: 2rem; margin-bottom: 15px;">My Music</h2>
+        <iframe style="border-radius:12px; width: 100%; height: 152px;" src="https://open.spotify.com/embed/artist/3pX7nZpyjVdHRfQh2kxZKi?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </section>
     <footer>
         <p>&copy; 2025 Kartheek Reddy. All Rights Reserved.</p>
     </footer>
@@ -550,7 +564,24 @@
             dropdown.classList.toggle('show');
         }
 
-        const texts = ["Welcome!", "Croeso!", "欢迎!", "स्वागत है!", "స్వాగతం!"];
+        const texts = [
+            "Welcome!", 
+            "Croeso!", 
+            "欢迎!", 
+            "स्वागत है!", 
+            "స్వాగతం!", 
+            "Bienvenido!", 
+            "Bienvenue!", 
+            "Willkommen!", 
+            "Benvenuto!", 
+            "Добро пожаловать!", 
+            "ようこそ!", 
+            "환영합니다!", 
+            "Bem-vindo!", 
+            "مرحبا!", 
+            "ברוך הבא!"
+        ];
+
         let index = 0;
 
         function changeText() {
@@ -563,18 +594,6 @@
         }
 
         setInterval(changeText, 3000); // Adjust interval to match faster animation
-
-        // Smooth scrolling for navbar links
-        document.querySelectorAll('nav a, nav .dropdown a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
     </script>
 </body>
 </html>
