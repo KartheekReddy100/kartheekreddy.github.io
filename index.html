@@ -24,7 +24,7 @@
         nav {
             display: flex; /* Use flexbox for alignment */
             align-items: center; /* Vertically align items */
-            justify-content: space-between; /* Distribute space between logo and menu */
+            justify-content: flex-end; /* Align navbar items to the right */
             position: fixed; /* Fix the navbar in place */
             top: 0; /* Stick to the top of the viewport */
             width: 100%;
@@ -52,6 +52,7 @@
             color: #007aff; /* macOS blue accent */
             margin-left: 20px; /* Keep a small margin for spacing */
             transition: transform 0.3s ease, color 0.3s ease; /* Add a hover effect to the logo */
+            margin-right: auto; /* Push the logo to the leftmost side */
         }
         body.night-mode nav .logo {
             color: #58a6ff; /* Light blue accent */
@@ -64,53 +65,7 @@
             display: none; /* Keep hidden as it's unused */
         }
         nav .dropdown {
-            display: flex; /* Ensure dropdown is flex for animation */
-            flex-direction: column;
-            align-items: flex-start;
-            background: #ffffff; /* White dropdown background */
-            position: absolute;
-            top: 100%; /* Position directly below the toggle button */
-            right: 20px; /* Align with the toggle button */
-            width: 220px; /* Slightly wider */
-            padding: 10px; /* Add padding inside the dropdown */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
-            border-radius: 10px; /* Rounded corners */
-            opacity: 0; /* Start hidden */
-            transform: scaleY(0); /* Collapse vertically */
-            transform-origin: top; /* Animate from the top */
-            transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
-            visibility: hidden; /* Hide dropdown when not visible */
-            border: 1px solid #d1d1d1; /* Subtle border */
-        }
-        body.night-mode nav .dropdown {
-            background: #161b22; /* Dark dropdown background */
-            border: 1px solid #30363d;
-        }
-        nav .dropdown.show {
-            opacity: 1; /* Fully visible */
-            transform: scaleY(1); /* Expand vertically */
-            visibility: visible; /* Make dropdown visible */
-        }
-        nav .dropdown a, nav .dropdown button {
-            padding: 10px; /* Uniform padding for links and buttons */
-            color: #007aff; /* macOS blue accent */
-            text-decoration: none;
-            font-size: 1rem; /* Adjust font size */
-            border: none; /* Remove border for buttons */
-            background: none; /* Transparent background for buttons */
-            cursor: pointer; /* Pointer cursor for buttons */
-            text-align: left; /* Align text to the left */
-            width: 100%; /* Full width */
-            box-sizing: border-box; /* Include padding in width */
-            transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
-            border-radius: 5px; /* Rounded corners for hover effect */
-            font-weight: 500; /* Medium font weight */
-        }
-        body.night-mode nav .dropdown a, body.night-mode nav .dropdown button {
-            color: #c9d1d9; /* Light text color */
-        }
-        nav .dropdown a:hover, nav .dropdown button:hover {
-            background-color: #f0f0f5; /* Light hover effect */
+            display: none; /* Removed dropdown styles */
         }
         nav .toggle {
             display: block; /* Keep toggle button visible */
@@ -131,7 +86,7 @@
             color: #fff;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease; /* Smooth transition for toggle button */
-            margin-right: 20px;
+            margin-right: 10px; /* Add spacing between the slider and the navbar */
         }
         .toggle-night-mode:hover {
             background-color: #005bb5; /* Darker blue on hover */
@@ -168,9 +123,9 @@
             color: #333; /* Darker text color for better readability */
         }
         body.night-mode section {
-            background: #161b22; /* Dark section background */
-            color: #c9d1d9; /* Light text color */
-            border: 1px solid #30363d; /* Subtle border */
+            background: #0d1117; /* Dark background for sections in night mode */
+            color: #c9d1d9; /* Lighter text color for readability */
+            border: 1px solid #30363d; /* Subtle border for night mode */
         }
         section:hover {
             transform: translateY(-5px); /* Subtle lift effect */
@@ -553,18 +508,10 @@
 </head>
 <body>
     <nav>
-        <span class="logo">Kartheek Reddy</span> <!-- Logo added -->
-        <span class="toggle" onclick="toggleMenu()">☰</span>
+        <span class="logo">Kartheek Reddy</span> <!-- Logo on the leftmost side -->
         <button class="toggle-night-mode" onclick="toggleNightMode()" aria-label="Toggle Night Mode">
             <i id="nightModeIcon" class="fas fa-moon"></i> <!-- Moon icon for night mode -->
         </button>
-        <div class="dropdown" id="dropdownMenu">
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <a href="blog.html">Blog</a> <!-- Updated Blog link -->
-            <a href="#store">Store</a> <!-- New Store link -->
-            <button onclick="alert('Button Clicked!')">Click Me</button>
-        </div>
     </nav>
     <section class="hero">
         <div class="typing-container">
@@ -733,11 +680,6 @@
 
         setInterval(changeText, 3000); // Adjust interval to match faster animation
 
-        function toggleMenu() {
-            const dropdown = document.getElementById('dropdownMenu');
-            dropdown.classList.toggle('show'); // Toggle the 'show' class
-        }
-
         function toggleNightMode() {
             const body = document.body;
             const icon = document.getElementById('nightModeIcon');
@@ -748,14 +690,6 @@
                 icon.classList.replace('fa-sun', 'fa-moon'); // Switch to moon icon
             }
         }
-
-        document.addEventListener('click', (event) => {
-            const dropdown = document.getElementById('dropdownMenu');
-            const toggle = document.querySelector('.toggle');
-            if (!dropdown.contains(event.target) && !toggle.contains(event.target)) {
-                dropdown.classList.remove('show'); // Collapse the dropdown if clicked outside
-            }
-        });
     </script>
 </body>
 </html>
