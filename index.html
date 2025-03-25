@@ -10,38 +10,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* macOS-style font stack */
+            background: linear-gradient(135deg, #e8eaed, #f5f5f7); /* macOS-like light gradient background */
+            color: #333; /* Softer text color */
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #0d1117, #161b22), url('https://www.transparenttextures.com/patterns/hexellence.png'); /* Add a faint geometric background pattern */
-            background-size: cover;
-            color: #c9d1d9;
-            padding-top: 0; /* Remove padding above the navbar */
+            transition: background 0.5s ease, color 0.5s ease, background-color 0.5s ease; /* Smooth transition for night mode */
+        }
+        body.night-mode {
+            background: linear-gradient(135deg, #0d1117, #161b22); /* Dark background */
+            color: #c9d1d9; /* Light text color */
         }
         nav {
             display: flex; /* Use flexbox for alignment */
             align-items: center; /* Vertically align items */
             justify-content: space-between; /* Distribute space between logo and menu */
-            position: fixed;
-            top: 0;
+            position: fixed; /* Fix the navbar in place */
+            top: 0; /* Stick to the top of the viewport */
             width: 100%;
-            background: linear-gradient(90deg, #161b22, #1f2937); /* Add a subtle gradient to the navbar */
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            backdrop-filter: blur(10px); /* Add blur effect for macOS-like translucency */
             z-index: 1000;
             padding: 10px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Softer shadow */
             border-radius: 0 0 10px 10px;
             position: relative; /* Ensure dropdown is positioned relative to nav */
             margin: 0; /* Remove any margin around the navbar */
-            border-bottom: 2px solid #58a6ff; /* Add a glowing border to the navbar */
+            border-bottom: 1px solid #d1d1d1; /* Subtle border */
+            transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition for navbar */
+        }
+        body.night-mode nav {
+            background: rgba(13, 17, 23, 0.9); /* Dark navbar background */
+            border-bottom: 1px solid #30363d; /* Subtle border */
+            color: #c9d1d9;
         }
         nav .logo {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.8rem; /* Slightly larger font */
+            font-weight: 600; /* Bold font for macOS feel */
             text-decoration: underline;
-            color: #58a6ff;
+            color: #007aff; /* macOS blue accent */
             margin-left: 20px; /* Keep a small margin for spacing */
             transition: transform 0.3s ease, color 0.3s ease; /* Add a hover effect to the logo */
+        }
+        body.night-mode nav .logo {
+            color: #58a6ff; /* Light blue accent */
         }
         nav .logo:hover {
             color: #1f6feb;
@@ -54,19 +67,24 @@
             display: flex; /* Ensure dropdown is flex for animation */
             flex-direction: column;
             align-items: flex-start;
-            background: linear-gradient(135deg, #1f2937, #3b4252); /* Gradient background */
+            background: #ffffff; /* White dropdown background */
             position: absolute;
             top: 100%; /* Position directly below the toggle button */
             right: 20px; /* Align with the toggle button */
             width: 220px; /* Slightly wider */
             padding: 10px; /* Add padding inside the dropdown */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Subtle shadow */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
             border-radius: 10px; /* Rounded corners */
             opacity: 0; /* Start hidden */
             transform: scaleY(0); /* Collapse vertically */
             transform-origin: top; /* Animate from the top */
-            transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+            transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.5s ease, border-color 0.5s ease; /* Smooth transition */
             visibility: hidden; /* Hide dropdown when not visible */
+            border: 1px solid #d1d1d1; /* Subtle border */
+        }
+        body.night-mode nav .dropdown {
+            background: #161b22; /* Dark dropdown background */
+            border: 1px solid #30363d;
         }
         nav .dropdown.show {
             opacity: 1; /* Fully visible */
@@ -75,7 +93,7 @@
         }
         nav .dropdown a, nav .dropdown button {
             padding: 10px; /* Uniform padding for links and buttons */
-            color: #c9d1d9; /* Text color */
+            color: #007aff; /* macOS blue accent */
             text-decoration: none;
             font-size: 1rem; /* Adjust font size */
             border: none; /* Remove border for buttons */
@@ -86,10 +104,13 @@
             box-sizing: border-box; /* Include padding in width */
             transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
             border-radius: 5px; /* Rounded corners for hover effect */
+            font-weight: 500; /* Medium font weight */
+        }
+        body.night-mode nav .dropdown a, body.night-mode nav .dropdown button {
+            color: #c9d1d9; /* Light text color */
         }
         nav .dropdown a:hover, nav .dropdown button:hover {
-            background-color: #58a6ff; /* Highlight background */
-            color: #0d1117; /* Change text color */
+            background-color: #f0f0f5; /* Light hover effect */
         }
         nav .toggle {
             display: block; /* Keep toggle button visible */
@@ -97,6 +118,28 @@
             font-size: 1.5rem;
             cursor: pointer;
             margin-right: 20px;
+        }
+        .toggle-night-mode {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background-color: #007aff; /* macOS blue accent */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease; /* Smooth transition for toggle button */
+            margin-right: 20px;
+        }
+        .toggle-night-mode:hover {
+            background-color: #005bb5; /* Darker blue on hover */
+            transform: scale(1.1); /* Slight zoom effect */
+        }
+        body.night-mode .toggle-night-mode {
+            background-color: #58a6ff; /* Light blue accent for night mode */
+            color: #0d1117; /* Dark text color */
         }
         @media (max-width: 768px) {
             nav .menu {
@@ -113,19 +156,25 @@
             }
         }
         section {
-            padding: 40px; /* Add spacing */
+            padding: 30px;
             margin: 20px auto;
             max-width: 800px;
-            background: linear-gradient(135deg, rgba(31, 41, 51, 0.9), rgba(31, 41, 51, 0.8)); /* Semi-transparent background with gradient overlay */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+            background: #ffffff; /* White card-like background */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease; /* Smooth transitions */
             text-align: center;
             border: 1px solid #58a6ff; /* Add border */
+            color: #333; /* Darker text color for better readability */
+        }
+        body.night-mode section {
+            background: #161b22; /* Dark section background */
+            color: #c9d1d9; /* Light text color */
+            border: 1px solid #30363d; /* Subtle border */
         }
         section:hover {
-            transform: translateY(-10px); /* Lift effect on hover */
-            box-shadow: 0 0 20px #58a6ff; /* Add glowing effect on hover */
+            transform: translateY(-5px); /* Subtle lift effect */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
         }
         .hero {
             background: linear-gradient(135deg, #1f2937, #3b4252); /* Add a glowing effect to the hero section */
@@ -195,20 +244,30 @@
             display: inline-block;
         }
         footer {
-            background: linear-gradient(90deg, #161b22, #1f2937); /* Add a gradient to the footer */
-            color: #c9d1d9;
-            padding: 20px;
+            background: #f5f5f7; /* Light footer background */
+            color: #666; /* Softer text color */
+            padding: 15px;
             text-align: center;
             margin-top: 20px;
             border-radius: 10px 10px 0 0;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.6); /* Add glowing effect to the footer */
+            border-top: 1px solid #d1d1d1; /* Subtle border */
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease; /* Smooth transition for footer */
+        }
+        body.night-mode footer {
+            background: #0d1117; /* Dark footer background */
+            color: #c9d1d9; /* Light text color */
+            border-top: 1px solid #30363d;
         }
         footer p {
             margin: 0;
             font-size: 0.9rem;
         }
+        #about, #contact, #projects, #experiences, #certifications, #education, #location, #music {
+            background-color: #ffffff; /* Make section backgrounds white */
+            color: #333; /* Ensure text is dark for readability */
+        }
         #about {
-            background-color: #161b22;
             padding: 30px;
             border-radius: 10px;
             margin: 20px auto;
@@ -219,8 +278,10 @@
             background: linear-gradient(90deg, #58a6ff, #1f6feb); /* Add a gradient effect to section titles */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.5rem;
+            font-size: 2rem; /* Adjusted font size */
+            font-weight: 600; /* Bold font for headings */
             margin-bottom: 20px;
+            color: #333; /* Darker text color */
         }
         #about p {
             font-size: 1.1rem;
@@ -231,7 +292,6 @@
             color: #58a6ff;
         }
         #contact {
-            background-color: #161b22;
             padding: 30px;
             border-radius: 10px;
             margin: 20px auto;
@@ -243,8 +303,10 @@
             background: linear-gradient(90deg, #58a6ff, #1f6feb); /* Add a gradient effect to section titles */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.5rem;
+            font-size: 2rem; /* Adjusted font size */
+            font-weight: 600; /* Bold font for headings */
             margin-bottom: 20px;
+            color: #333; /* Darker text color */
         }
         #contact p {
             font-size: 1.1rem;
@@ -339,7 +401,6 @@
             background-color: #4b0082;
         }
         #projects {
-            background-color: #161b22;
             padding: 30px;
             border-radius: 10px;
             margin: 20px auto;
@@ -350,8 +411,10 @@
             background: linear-gradient(90deg, #58a6ff, #1f6feb); /* Add a gradient effect to section titles */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.5rem;
+            font-size: 2rem; /* Adjusted font size */
+            font-weight: 600; /* Bold font for headings */
             margin-bottom: 20px;
+            color: #333; /* Darker text color */
         }
         #projects ul {
             list-style-type: none;
@@ -366,7 +429,6 @@
             color: #58a6ff;
         }
         #experiences {
-            background-color: #161b22;
             padding: 30px;
             border-radius: 10px;
             margin: 20px auto;
@@ -377,8 +439,10 @@
             background: linear-gradient(90deg, #58a6ff, #1f6feb); /* Add a gradient effect to section titles */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.5rem;
+            font-size: 2rem; /* Adjusted font size */
+            font-weight: 600; /* Bold font for headings */
             margin-bottom: 20px;
+            color: #333; /* Darker text color */
         }
         #experiences ul {
             list-style-type: none;
@@ -393,7 +457,6 @@
             color: #58a6ff;
         }
         #certifications {
-            background-color: #161b22;
             padding: 30px;
             border-radius: 10px;
             margin: 20px auto;
@@ -404,8 +467,10 @@
             background: linear-gradient(90deg, #58a6ff, #1f6feb); /* Add a gradient effect to section titles */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.5rem;
+            font-size: 2rem; /* Adjusted font size */
+            font-weight: 600; /* Bold font for headings */
             margin-bottom: 20px;
+            color: #333; /* Darker text color */
         }
         #certifications ul {
             list-style-type: none;
@@ -425,7 +490,6 @@
             margin-top: 5px;
         }
         #education {
-            background-color: #161b22;
             padding: 30px;
             border-radius: 10px;
             margin: 20px auto;
@@ -436,8 +500,10 @@
             background: linear-gradient(90deg, #58a6ff, #1f6feb); /* Add a gradient effect to section titles */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.5rem;
+            font-size: 2rem; /* Adjusted font size */
+            font-weight: 600; /* Bold font for headings */
             margin-bottom: 20px;
+            color: #333; /* Darker text color */
         }
         #education ul {
             list-style-type: none;
@@ -460,8 +526,8 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #58a6ff;
-            color: #0d1117;
+            background-color: #007aff; /* macOS blue accent */
+            color: #fff;
             border: none;
             border-radius: 50%;
             width: 60px;
@@ -470,13 +536,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow */
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        body.night-mode .floating-button {
+            background-color: #58a6ff; /* Light blue accent */
+            color: #0d1117; /* Dark text color */
         }
         .floating-button:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+            background-color: #005bb5; /* Darker blue on hover */
         }
     </style>
 </head>
@@ -484,6 +555,9 @@
     <nav>
         <span class="logo">Kartheek Reddy</span> <!-- Logo added -->
         <span class="toggle" onclick="toggleMenu()">☰</span>
+        <button class="toggle-night-mode" onclick="toggleNightMode()" aria-label="Toggle Night Mode">
+            <i id="nightModeIcon" class="fas fa-moon"></i> <!-- Moon icon for night mode -->
+        </button>
         <div class="dropdown" id="dropdownMenu">
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
@@ -601,8 +675,8 @@
             </a>
         </button>
     </section>
-    <section id="location" style="background-color: #161b22; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; text-align: center;">
-        <h2 style="background: linear-gradient(90deg, #58a6ff, #1f6feb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.5rem; margin-bottom: 20px;">My Location</h2>
+    <section id="location" style="background-color: #ffffff; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; text-align: center; color: #333;">
+        <h2 style="background: linear-gradient(90deg, #58a6ff, #1f6feb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; font-weight: 600; margin-bottom: 20px; color: #333;">My Location</h2>
         <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.260918949872!2d-3.226485684246781!3d51.49755357963444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e1c1c5b2c3b2f%3A0x7b8e9c7e3b8e9c7e!2sLlandaff%2C%20Cardiff%2C%20UK!5e0!3m2!1sen!2suk!4v1697040000000!5m2!1sen!2suk" 
             width="100%" 
@@ -613,8 +687,8 @@
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </section>
-    <section id="music" style="background-color: #161b22; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; text-align: center;">
-        <h2 style="background: linear-gradient(90deg, #58a6ff, #1f6feb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.5rem; margin-bottom: 20px;">My Music</h2>
+    <section id="music" style="background-color: #ffffff; padding: 30px; border-radius: 10px; margin: 20px auto; max-width: 800px; text-align: center; color: #333;">
+        <h2 style="background: linear-gradient(90deg, #58a6ff, #1f6feb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; font-weight: 600; margin-bottom: 20px; color: #333;">My Music</h2>
         <iframe style="border-radius:12px; width: 100%; height: 152px;" src="https://open.spotify.com/embed/artist/3pX7nZpyjVdHRfQh2kxZKi?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </section>
     <footer>
@@ -662,6 +736,17 @@
         function toggleMenu() {
             const dropdown = document.getElementById('dropdownMenu');
             dropdown.classList.toggle('show'); // Toggle the 'show' class
+        }
+
+        function toggleNightMode() {
+            const body = document.body;
+            const icon = document.getElementById('nightModeIcon');
+            body.classList.toggle('night-mode');
+            if (body.classList.contains('night-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun'); // Switch to sun icon
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon'); // Switch to moon icon
+            }
         }
 
         document.addEventListener('click', (event) => {
