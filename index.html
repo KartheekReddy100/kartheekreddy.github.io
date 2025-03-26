@@ -14,7 +14,7 @@
             background: linear-gradient(135deg, #e8eaed, #f5f5f7); /* macOS-like light gradient background */
             color: #333; /* Softer text color */
             margin: 0;
-            padding: 0;
+            padding: 10px; /* Add padding around the entire page */
             transition: background 0.5s ease, color 0.5s ease, background-color 0.5s ease; /* Smooth transition for night mode */
         }
         body.night-mode {
@@ -103,15 +103,34 @@
             nav .toggle {
                 display: block;
             }
+            nav {
+                flex-direction: column; /* Stack navbar items vertically */
+                align-items: flex-start; /* Align items to the left */
+                padding: 10px; /* Add padding for smaller screens */
+            }
             nav .dropdown {
                 display: flex;
             }
             section {
-                margin: 20px 10px; /* Add space between section and screen edges */
+                margin: 10px 5px; /* Reduce margin for smaller screens */
+                padding: 15px; /* Adjust padding for smaller screens */
+            }
+            .skill-button {
+                flex: 0 1 100%; /* Make buttons take full width */
+                text-align: center; /* Center align text */
+            }
+        }
+        @media (max-width: 480px) {
+            section {
+                margin: 5px 2px; /* Further reduce margin for very small screens */
+                padding: 10px; /* Further adjust padding */
+            }
+            .hero h2 {
+                font-size: 1.5rem; /* Further adjust font size */
             }
         }
         section {
-            padding: 30px;
+            padding: 20px; /* Add padding inside sections */
             margin: 20px auto;
             max-width: 800px;
             background: #ffffff; /* White card-like background */
@@ -121,6 +140,46 @@
             text-align: center;
             border: 1px solid #58a6ff; /* Add border */
             color: #333; /* Darker text color for better readability */
+            transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition for night mode */
+            font-family: 'Montserrat', sans-serif; /* Consistent font across sections */
+        }
+        section h2 {
+            font-size: 2rem; /* Consistent heading size */
+            font-weight: 600; /* Bold font for headings */
+            margin-bottom: 20px; /* Consistent spacing below headings */
+            background: linear-gradient(90deg, #58a6ff, #1f6feb); /* Gradient effect for headings */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center; /* Center align all section headings */
+        }
+        section p, section ul {
+            font-size: 1.1rem; /* Consistent paragraph and list font size */
+            line-height: 1.8; /* Consistent line height for readability */
+            color: inherit; /* Ensure text color matches the section's mode */
+            margin-bottom: 15px; /* Consistent spacing between paragraphs and list items */
+        }
+        section ul {
+            list-style-type: none; /* Remove default list styling */
+            padding: 0; /* Remove padding for lists */
+        }
+        section ul li {
+            margin-bottom: 10px; /* Consistent spacing between list items */
+        }
+        section ul li strong {
+            color: #58a6ff; /* Highlighted text color */
+        }
+        body.night-mode section,
+        body.night-mode #about,
+        body.night-mode #contact,
+        body.night-mode #projects,
+        body.night-mode #experiences,
+        body.night-mode #certifications,
+        body.night-mode #education,
+        body.night-mode #location,
+        body.night-mode #music {
+            background-color: #0d1117 !important; /* Dark background for sections in night mode */
+            color: #c9d1d9 !important; /* Lighter text color for readability */
+            border: 1px solid #30363d; /* Subtle border for night mode */
         }
         body.night-mode section {
             background: #0d1117; /* Dark background for sections in night mode */
@@ -132,42 +191,18 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
         }
         .hero {
-            background: linear-gradient(135deg, #1f2937, #3b4252); /* Add a glowing effect to the hero section */
+            background: transparent; /* Completely transparent background */
             padding: 30px;
-            border: 2px solid #58a6ff;
-            box-shadow: 0 0 15px #58a6ff;
+            border: none; /* Remove border */
             border-radius: 10px;
             margin: 20px auto;
             max-width: 800px;
             text-align: center; /* Center align the text */
-            animation: pulse 3s infinite; /* Add pulsating animation */
+            box-shadow: none; /* Remove shadow */
+            transition: none; /* Remove hover animation */
         }
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 15px #58a6ff;
-            }
-            50% {
-                box-shadow: 0 0 25px #1f6feb;
-            }
-        }
-        .hero h2 {
-            color: #58a6ff;
-            font-size: 3rem; /* Increase the font size */
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px #58a6ff, 0 0 20px #58a6ff; /* Add a glowing text effect */
-            background: linear-gradient(90deg, #58a6ff, #1f6feb); /* Add gradient animation */
-            background-size: 200% auto;
-            animation: gradient 3s linear infinite;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
+        body.night-mode .hero {
+            background: transparent; /* Ensure transparency in dark mode */
         }
         .typing {
             display: inline-block;
@@ -221,6 +256,11 @@
         #about, #contact, #projects, #experiences, #certifications, #education, #location, #music {
             background-color: #ffffff; /* Make section backgrounds white */
             color: #333; /* Ensure text is dark for readability */
+        }
+        body.night-mode #location, 
+        body.night-mode #music {
+            background-color: #0d1117; /* Ensure consistency for specific sections */
+            color: #c9d1d9;
         }
         #about {
             padding: 30px;
@@ -444,6 +484,41 @@
             line-height: 1.6;
             margin-top: 5px;
         }
+        #hidden-certifications {
+            display: none;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+        }
+        #hidden-certifications.show {
+            display: block;
+            opacity: 1;
+            max-height: 1000px; /* Set a large enough value to accommodate content */
+        }
+        #show-more-btn, #show-less-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #007aff; /* macOS blue accent */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #show-more-btn:hover, #show-less-btn:hover {
+            background-color: #005bb5; /* Darker blue on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+        body.night-mode #show-more-btn, body.night-mode #show-less-btn {
+            background-color: #58a6ff; /* Light blue accent for night mode */
+            color: #0d1117; /* Dark text color */
+        }
+        body.night-mode #show-more-btn:hover, body.night-mode #show-less-btn:hover {
+            background-color: #1f6feb; /* Darker blue for night mode hover */
+        }
         #education {
             padding: 30px;
             border-radius: 10px;
@@ -504,9 +579,127 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
             background-color: #005bb5; /* Darker blue on hover */
         }
+        #show-more-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #007aff; /* macOS blue accent */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #show-more-btn:hover {
+            background-color: #005bb5; /* Darker blue on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+        body.night-mode #show-more-btn {
+            background-color: #58a6ff; /* Light blue accent for night mode */
+            color: #0d1117; /* Dark text color */
+        }
+        body.night-mode #show-more-btn:hover {
+            background-color: #1f6feb; /* Darker blue for night mode hover */
+        }
+        #skills {
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+            background-color: #ffffff;
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #58a6ff;
+        }
+        body.night-mode #skills {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+        }
+        #skills h2 {
+            background: linear-gradient(90deg, #58a6ff, #1f6feb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .skill-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #007aff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            flex: 0 1 calc(33.333% - 20px); /* Ensure consistent size */
+            text-align: center;
+        }
+        .skill-button:hover {
+            background-color: #005bb5;
+            transform: scale(1.05);
+        }
+        body.night-mode .skill-button {
+            background-color: #58a6ff;
+            color: #0d1117;
+        }
+        body.night-mode .skill-button:hover {
+            background-color: #1f6feb;
+        }
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5; /* Increased opacity */
+            display: none; /* Hidden by default */
+        }
+        body.night-mode #matrix-canvas {
+            display: block; /* Show in dark mode */
+        }
+
+        #light-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://www.transparenttextures.com/patterns/hexellence.png'); /* Vibrant IT-themed pattern */
+            background-color: #ffffff; /* Bright white background */
+            opacity: 0.9; /* Increased opacity for better visibility */
+            animation: moveBackground 15s linear infinite; /* Smooth animation */
+            display: block; /* Visible by default */
+        }
+        body.night-mode #light-background {
+            display: none; /* Hide in dark mode */
+        }
+
+        @keyframes moveBackground {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 200px 200px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div id="light-background"></div>
+    <canvas id="matrix-canvas"></canvas>
     <nav>
         <span class="logo">Kartheek Reddy</span> <!-- Logo on the leftmost side -->
         <button class="toggle-night-mode" onclick="toggleNightMode()" aria-label="Toggle Night Mode">
@@ -555,16 +748,28 @@
     </section>
     <section id="certifications">
         <h2>Certifications</h2>
-        <ul>
+        <ul id="certifications-list">
+            <li>
+                <strong>Ethical Hacking Essentials (EHE)</strong> - EC-Council (October 25, 2023)
+                <p>Developed a strong foundation in information security and ethical hacking, focusing on identifying and mitigating cyber threats. Explored various security vulnerabilities, malware types, and vulnerability assessment techniques. Gained hands-on experience in analyzing network-level attacks, including sniffing, denial-of-service, and session hijacking, along with their countermeasures. Investigated application-level threats such as web server exploitation, OWASP Top 10 attacks, and SQL injection, implementing effective security measures to mitigate risks.</p>
+            </li>
             <li>
                 <strong>IBM Cloud Essentials (CC0103EN)</strong> - IBM and EdX (June 2023)
                 <p>Gained a strong understanding of cloud computing models (IaaS, PaaS, SaaS) and various deployment types. Explored core IBM Cloud services, including compute, storage, networking, and security, to enhance cloud-based solutions. Developed hands-on experience in navigating the IBM Cloud console and effectively managing cloud resources.</p>
             </li>
-            <li>
-                <strong>Introduction to Cybersecurity Essentials</strong> - Cisco Networking Academy and Coursera (May 2023)
-                <p>Developed a strong foundation in cybersecurity concepts, including threat identification, risk management, and security frameworks. Gained insights into best practices for protecting data, networks, and systems against cyber threats. Explored various cybersecurity tools and their practical applications in real-world security scenarios.</p>
-            </li>
+            <div id="hidden-certifications">
+                <li>
+                    <strong>Introduction to Cybersecurity Essentials</strong> - Cisco Networking Academy and Coursera (May 2023)
+                    <p>Developed a strong foundation in cybersecurity concepts, including threat identification, risk management, and security frameworks. Gained insights into best practices for protecting data, networks, and systems against cyber threats. Explored various cybersecurity tools and their practical applications in real-world security scenarios.</p>
+                </li>
+                <li>
+                    <strong>Cyber Incident Response</strong> - Infosec (March 26, 2023)
+                    <p>Developed a strong understanding of cyber incident response, focusing on high-level incident handling processes and technical investigations. Gained hands-on experience through labs and projects, applying forensic and ethical hacking techniques to real-world scenarios. Explored key phases of incident response, including detection, containment, eradication, and recovery. Conducted in-depth analysis of memory, network, and host forensics to identify and mitigate security incidents effectively.</p>
+                </li>
+            </div>
         </ul>
+        <button id="show-more-btn" onclick="toggleCertifications()">Show More</button>
+        <button id="show-less-btn" onclick="toggleCertifications()" style="display: none;">Show Less</button>
     </section>
     <section id="education">
         <h2>Education</h2>
@@ -578,6 +783,33 @@
                 <p>Developed a strong foundation in understanding and mitigating cyber threats while securing data transmission and safeguarding information systems. Gained expertise in detecting, analyzing, and responding to cyber threats using various security tools and methodologies. Explored decentralized systems and contributed to the development of secure, automated contract solutions to enhance cybersecurity in blockchain-based environments.</p>
             </li>
         </ul>
+    </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <button class="skill-button">Cybersecurity</button>
+            <button class="skill-button">Penetration Testing</button>
+            <button class="skill-button">Digital Forensics</button>
+            <button class="skill-button">Ethical Hacking</button>
+            <button class="skill-button">Encryption Techniques</button>
+            <button class="skill-button">Cyber Incident Response</button>
+            <button class="skill-button">Network Security</button>
+            <button class="skill-button">Application Security</button>
+            <button class="skill-button">Vulnerability Assessment</button>
+            <button class="skill-button">Malware Analysis</button>
+            <button class="skill-button">Threat Intelligence</button>
+            <button class="skill-button">GDPR Compliance</button>
+            <button class="skill-button">ISO 27701 Compliance</button>
+            <button class="skill-button">Cloud Security</button>
+            <button class="skill-button">Forensic Investigations</button>
+            <button class="skill-button">Email Forensics</button>
+            <button class="skill-button">Data Recovery</button>
+            <button class="skill-button">Secure Web Development</button>
+            <button class="skill-button">Security Awareness Training</button>
+            <button class="skill-button">Risk Assessment</button>
+            <button class="skill-button">Wireless Security</button>
+            <button class="skill-button">IoT Security</button>
+        </div>
     </section>
     <section id="contact">
         <h2>Socials</h2>
@@ -639,7 +871,7 @@
         <iframe style="border-radius:12px; width: 100%; height: 152px;" src="https://open.spotify.com/embed/artist/3pX7nZpyjVdHRfQh2kxZKi?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </section>
     <footer>
-        <p>&copy; 2023 Kartheek Reddy. All rights reserved.</p>
+        <p>&copy; 2025 Kartheek Reddy. All rights reserved.</p>
     </footer>
     <button class="floating-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
         <i class="fas fa-arrow-up"></i>
@@ -690,6 +922,87 @@
                 icon.classList.replace('fa-sun', 'fa-moon'); // Switch to moon icon
             }
         }
+
+        function toggleCertifications() {
+            const hiddenCertifications = document.querySelector('#hidden-certifications');
+            const showMoreBtn = document.querySelector('#show-more-btn');
+            const showLessBtn = document.querySelector('#show-less-btn');
+
+            if (hiddenCertifications) {
+                if (hiddenCertifications.classList.contains('show')) {
+                    hiddenCertifications.classList.remove('show');
+                    showMoreBtn.style.display = 'inline-block';
+                    showLessBtn.style.display = 'none';
+                } else {
+                    hiddenCertifications.classList.add('show');
+                    showMoreBtn.style.display = 'none';
+                    showLessBtn.style.display = 'inline-block';
+                }
+            }
+        }
+
+        // Matrix falling effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = `${fontSize}px monospace`;
+
+            drops.forEach((y, x) => {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                ctx.fillText(text, x * fontSize, y * fontSize);
+
+                if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[x] = 0;
+                }
+                drops[x]++;
+            });
+        }
+
+        let matrixInterval;
+        function startMatrixEffect() {
+            if (!matrixInterval) {
+                matrixInterval = setInterval(drawMatrix, 50);
+            }
+        }
+
+        function stopMatrixEffect() {
+            if (matrixInterval) {
+                clearInterval(matrixInterval);
+                matrixInterval = null;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        // Toggle matrix effect based on dark mode
+        document.addEventListener('DOMContentLoaded', () => {
+            startMatrixEffect();
+
+            const observer = new MutationObserver(() => {
+                if (!document.body.classList.contains('night-mode')) {
+                    startMatrixEffect(); // Ensure it runs in light mode
+                }
+            });
+
+            observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
